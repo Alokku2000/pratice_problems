@@ -1,0 +1,84 @@
+#include<stdio.h>
+void checking(int,int[]);
+void logic(int);
+int is_even_odd(int);
+int length(int);
+int main()
+{
+    int total_no,arr[10];
+    printf("Enter the total number you want to enter and then input numbers\n");
+    scanf("%d",&total_no);
+    for(int i=0;i<total_no;i++)
+        scanf("%d",&arr[i]);
+    checking(total_no,arr);
+    return 0;
+}
+void checking(int total_no,int arr[])
+{
+    int number,even=1,odd=1;
+    int length1;
+    for(int i=0;i<total_no;i++)
+    {
+        number=arr[i];
+        length1=length(number);
+        if(length1<=10 && number!=0 && number>0)
+           logic(number);
+           else if(number<10 && number!=0 && number>0)
+          printf("Magical ");
+           else
+            printf("ERROR");
+    }
+}
+void logic(int number)
+{   int even=1,odd=1;
+    int k=length(number);
+          if(k%2==0)
+          {
+            while(number!=0)
+            {
+            even*=number%10;
+            number/=10;
+            odd*=number%10;
+            number/=10;
+            }
+          }
+          else
+          {
+            while(number!=0)
+              {
+            odd*=number%10;
+            number/=10;
+            if(number==0)
+                break;
+            even*=number%10;
+            number/=10;
+             }
+          }
+        if(even>=odd)
+            printf("Dominant %d %d ",even,odd);
+        else
+            printf("Magical %d %d ",even,odd);
+}
+/*int is_even_odd(int number)
+{
+    int c=0;
+    while(number!=0)
+    {
+        number/=10;
+        c++;
+    }
+    if(c%2==0)
+        return 1;
+    else
+        return 0;
+}*/
+int length(int number)
+{
+    int c=0;
+    while(number!=0)
+    {
+        number/=10;
+        c++;
+    }
+    return c;
+}
